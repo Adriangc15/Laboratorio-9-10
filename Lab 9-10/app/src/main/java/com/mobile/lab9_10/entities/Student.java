@@ -19,6 +19,14 @@ public class Student {
         this.courses = courses;
     }
 
+    public Student(int id, String name, String lastName, int age) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.courses = new ArrayList<>();
+    }
+
     public Student(){
         this.id = 0;
         this.name = "";
