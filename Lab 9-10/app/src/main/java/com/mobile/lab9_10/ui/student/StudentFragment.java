@@ -1,4 +1,4 @@
-package com.mobile.lab9_10.ui.slideshow;
+package com.mobile.lab9_10.ui.student;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.mobile.lab9_10.R;
 
-public class SlideshowFragment extends Fragment {
+public class StudentFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private StudentViewModel studentViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        studentViewModel =
+                ViewModelProviders.of(this).get(StudentViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_student, container, false);
+        final TextView textView = root.findViewById(R.id.text_gallery);
+        studentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.mobile.lab9_10.ui.gallery.GalleryFragment"
+        android:name="com.mobile.lab9_10.ui.student.StudentFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_student" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.mobile.lab9_10.ui.slideshow.SlideshowFragment"
+        android:name="com.mobile.lab9_10.ui.course.CourseFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_course" />
 </navigation>
