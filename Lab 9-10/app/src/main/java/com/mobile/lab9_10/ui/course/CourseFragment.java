@@ -32,7 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class CourseFragment extends Fragment implements CourseAdapter.CourseAdapterListener, {
+public class CourseFragment extends Fragment implements CourseAdapter.CourseAdapterListener {
 
     private CourseViewModel courseViewModel;
     private RecyclerView recyclerView;
