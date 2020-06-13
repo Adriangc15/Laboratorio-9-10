@@ -44,6 +44,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
     private CoordinatorLayout coordinatorLayout;
     private View root;
     public static final String EDITABLE_FLAG = "editable";
+    public static final String COURSE_FLAG = "course";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -151,7 +152,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
             // Create Intent as editable = true
             Intent intent = new Intent( this.root.getContext(), CourseCreate.class);
             intent.putExtra(EDITABLE_FLAG, true);
-            intent.putExtra("course", course);
+            intent.putExtra(COURSE_FLAG, course);
             this.adapter.notifyDataSetChanged();
             startActivity(intent);
         }

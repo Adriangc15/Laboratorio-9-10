@@ -23,11 +23,11 @@ public class CrearStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_student);
 
-        this.id = (EditText) findViewById(R.id.inputID);
+        this.id = (EditText) findViewById(R.id.inputCourseId);
         this.nombre = (EditText) findViewById(R.id.inputNombre);
         this.apellido = (EditText) findViewById(R.id.inputApellido);
         this.edad = (EditText) findViewById(R.id.inputEdad);
-        this.guardar = (ImageButton) findViewById(R.id.guardar);
+        this.guardar = (ImageButton) findViewById(R.id.saveCourse);
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override

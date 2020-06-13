@@ -46,8 +46,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Course course = courseListFiltered.get(position);
         holder.titleFirstLbl.setText(course.getDescription());
-        holder.titleSecondLbl.setText(course.getCredits());
-        holder.descriptionLbl.setText(String.valueOf(course.getId()));
+        holder.titleSecondLbl.setText(String.format("Créditos: %s", course.getCredits()));
+        holder.descriptionLbl.setText(String.format("Id: %s", String.valueOf(course.getId())));
     }
 
     @Override

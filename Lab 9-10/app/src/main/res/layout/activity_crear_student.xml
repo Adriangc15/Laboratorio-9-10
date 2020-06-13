@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/titulo"
+                android:id="@+id/TitleCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
@@ -53,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputID"
+                    android:id="@+id/inputCourseId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -174,7 +174,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/guardar"
+                android:id="@+id/saveCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"

@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/titulo"
+                android:id="@+id/TitleCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
@@ -40,7 +40,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -54,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputID"
+                    android:id="@+id/inputCourseId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -76,7 +75,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/nombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -90,13 +88,13 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputDescripcion"
+                    android:id="@+id/inputCourseDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Descripción"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </LinearLayout>
         </TableRow>
 
@@ -112,11 +110,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/apellido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Creditos" />
+                    android:text="Créditos" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,12 +123,12 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputCreditos"
+                    android:id="@+id/inputCourseCredits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Creditos"
+                    android:hint="Créditos"
                     android:inputType="textPersonName" />
             </LinearLayout>
         </TableRow>
@@ -141,7 +138,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/guardar"
+                android:id="@+id/saveCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
