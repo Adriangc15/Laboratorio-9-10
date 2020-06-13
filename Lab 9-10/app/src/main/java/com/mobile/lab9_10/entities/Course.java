@@ -1,6 +1,8 @@
 package com.mobile.lab9_10.entities;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
 
     private int id;
     private String description;

@@ -1,9 +1,10 @@
 package com.mobile.lab9_10.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Student {
+public class Student implements Serializable {
 
     private int id;
     private String name;

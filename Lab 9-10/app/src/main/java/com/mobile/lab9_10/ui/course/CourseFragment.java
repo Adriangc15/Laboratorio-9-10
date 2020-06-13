@@ -1,22 +1,17 @@
 package com.mobile.lab9_10.ui.course;
 
-import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -24,6 +19,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mobile.lab9_10.R;
 import com.mobile.lab9_10.adapters.CourseAdapter;
@@ -47,6 +43,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
     private CourseModel courseModel;
     private CoordinatorLayout coordinatorLayout;
     private View root;
+    public static final String EDITABLE_FLAG = "editable";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -74,6 +71,17 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
         ItemTouchHelper.SimpleCallback itemSimpleCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemSimpleCallback).attachToRecyclerView(this.recyclerView);
 
+        // Create action add course to floating button
+        FloatingActionButton fab = this.root.findViewById(R.id.addCourseBtn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(root.getContext(), CourseCreate.class);
+                intent.putExtra(EDITABLE_FLAG, false);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
 
@@ -98,6 +106,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+
         if (direction == ItemTouchHelper.START){
             if (viewHolder instanceof CourseAdapter.MyViewHolder){
                 // Save the index deleted
@@ -134,11 +143,22 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
                 }
 
             }
+        } else {
+
+            // If the user is going to edit a course
+            Course course = this.adapter.getSwipedItem(viewHolder.getAdapterPosition());
+
+            // Create Intent as editable = true
+            Intent intent = new Intent( this.root.getContext(), CourseCreate.class);
+            intent.putExtra(EDITABLE_FLAG, true);
+            intent.putExtra("course", course);
+            this.adapter.notifyDataSetChanged();
+            startActivity(intent);
         }
     }
 
     @Override
     public void onItemMove(int source, int target) {
-
+        this.adapter.onItemMoved(source, target);
     }
 }

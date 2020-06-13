@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -56,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 //         Creation of the DataBase just for the first time
-//        DataBase db = new DataBase(this.getFilesDir().getPath());  // Already run
+//        DataBase db = new DataBase(this.getFilesDir().getPath());  // Already ran
 //        db.initDB()
-        CourseModel model = CourseModel.getInstance(this.getFilesDir().getPath());
     }
 
     @Override
