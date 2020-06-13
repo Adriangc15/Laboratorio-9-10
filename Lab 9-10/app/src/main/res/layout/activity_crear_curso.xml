@@ -90,7 +90,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputNombre"
+                    android:id="@+id/inputDescripcion"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -126,7 +126,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputApellido"
+                    android:id="@+id/inputCreditos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
