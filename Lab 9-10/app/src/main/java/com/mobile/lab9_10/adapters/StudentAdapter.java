@@ -1,7 +1,5 @@
 package com.mobile.lab9_10.adapters;
 
-
-import android.security.keystore.SecureKeyImportUnavailableException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,23 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.lab9_10.R;
 import com.mobile.lab9_10.entities.Course;
+import com.mobile.lab9_10.entities.Student;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder> implements Filterable {
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHolder> implements Filterable {
 
-    private List<Course> courseList;
-    private List<Course> courseListFiltered;
-    private CourseAdapterListener listener;
-    private Course deletedCourse;
+    private List<Student> studentList;
+    private List<Student> studentListFiltered;
+    private Student deletedStudent;
+    private StudentAdapterListener listener;
 
-    public CourseAdapter(List<Course> courseList, CourseAdapterListener listener){
-        this.courseList = courseList;
-        this.courseListFiltered = courseList;
-        this.deletedCourse = null;
+    public StudentAdapter(List<Student> studentList, StudentAdapterListener listener){
+        this.studentList = studentList;
+        this.studentListFiltered = studentList;
+        this.deletedStudent = null;
         this.listener = listener;
     }
 
@@ -44,23 +43,23 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final Course course = courseListFiltered.get(position);
-        holder.titleFirstLbl.setText(course.getDescription());
-        holder.titleSecondLbl.setText(course.getCredits());
-        holder.descriptionLbl.setText(String.valueOf(course.getId()));
+        final Student student = studentListFiltered.get(position);
+        holder.titleFirstLbl.setText(student.getName());
+        holder.titleSecondLbl.setText(student.getLastName());
+        holder.descriptionLbl.setText(String.valueOf(student.getId()));
     }
 
     @Override
     public int getItemCount() {
-        return courseListFiltered.size();
+        return studentListFiltered.size();
     }
 
     public void removeItem(int position){
-        deletedCourse = courseListFiltered.remove(position);
-        Iterator<Course> iterator = courseList.iterator();
+        deletedStudent = studentListFiltered.remove(position);
+        Iterator<Student> iterator = studentList.iterator();
         while (iterator.hasNext()){
-            Course aux = iterator.next();
-            if (deletedCourse.equals(aux)){
+            Student aux = iterator.next();
+            if (deletedStudent.equals(aux)){
                 iterator.remove();
             }
         }
@@ -68,29 +67,29 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     }
 
     public void restoreItem(int position){
-        if (courseListFiltered.size() == courseList.size()){
-            courseListFiltered.add(position, deletedCourse);
+        if (studentListFiltered.size() == studentList.size()){
+            studentListFiltered.add(position, deletedStudent);
         } else {
-            courseListFiltered.add(position, deletedCourse);
-            courseList.add(deletedCourse);
+            studentListFiltered.add(position, deletedStudent);
+            studentList.add(deletedStudent);
         }
 
         notifyDataSetChanged();
         notifyItemInserted(position);
     }
 
-    public Course getSwipedItem(int position){
-        return courseListFiltered.get(position);
+    public Student getSwipedItem(int position){
+        return studentListFiltered.get(position);
     }
 
     public void onItemMoved(int from, int to){
         if (from < to){
             for (int i = from; i < to; i++){
-                Collections.swap(courseListFiltered, i, i + 1);
+                Collections.swap(studentListFiltered, i, i + 1);
             }
         } else {
             for (int i = from; i > to; i--){
-                Collections.swap(courseListFiltered, i, i - 1);
+                Collections.swap(studentListFiltered, i, i - 1);
             }
         }
         notifyItemMoved(from, to);
@@ -103,27 +102,27 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             protected FilterResults performFiltering(CharSequence constraint) {
                 String charString = constraint.toString().toLowerCase();
                 if (charString.isEmpty()){
-                    courseListFiltered = courseList;
+                    studentListFiltered = studentList;
                 } else {
-                    List<Course> filteredList = new ArrayList<>();
-                    for (Course row : courseList){
+                    List<Student> filteredList = new ArrayList<>();
+                    for (Student row : studentList){
                         if (String.valueOf(row.getId()).toLowerCase().equals(charString) ||
-                            row.getCredits().toLowerCase().equals(charString) ||
-                            row.getDescription().toLowerCase().equals(charString)){
+                                row.getName().toLowerCase().equals(charString) ||
+                                row.getLastName().toLowerCase().equals(charString)){
                             filteredList.add(row);
                         }
                     }
-                    courseListFiltered = filteredList;
+                    studentListFiltered = filteredList;
                 }
 
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = courseListFiltered;
+                filterResults.values = studentListFiltered;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                courseListFiltered = (ArrayList<Course>) results.values;
+                studentListFiltered = (ArrayList<Student>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -145,14 +144,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onCourseSelected(courseListFiltered.get(getAdapterPosition()));
+                    listener.onStudentSelected(studentListFiltered.get(getAdapterPosition()));
                 }
             });
 
         }
     }
 
-    public interface CourseAdapterListener {
-        void onCourseSelected(Course course);
+    public interface StudentAdapterListener {
+        void onStudentSelected(Student student);
     }
+
 }
