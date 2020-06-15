@@ -46,6 +46,9 @@ public class Course implements Serializable {
 
     @Override
     public String toString(){
+        if (getId() == 0){
+            return "Seleccione un curso";
+        }
         return String.format("Curso: %s Creditos: %s", getDescription(), getCredits());
     }
 }
