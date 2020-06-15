@@ -95,6 +95,8 @@ public class DataBase {
     public static final String INSERT_STUDENT = "Insert into Students(id, name, lastName, age) values (?, ?, ?, ?);";
 
     public static final String UPDATE_STUDENT = "Update Students Set name=?, lastName=?, age=? Where id = ?";
+
+    public static final String INSERT_ENROLL = "Insert into StudentCourses(studentId, courseId) values (?, ?);";
     // End of Queries for Students -----------------------------------------------------------------
 
     private static final String DB_PATH = "%s/lab9-10";
@@ -116,13 +118,13 @@ public class DataBase {
         try {
             db = SQLiteDatabase.openDatabase(String.format(DB_PATH, this.contextPath), null, SQLiteDatabase.CREATE_IF_NECESSARY);
             if (db.isOpen()){
-//                db.execSQL(CREATE_TBL_COURSES);
-//                db.execSQL(CREATE_TBL_STUDENTS);
-//                db.execSQL(CREATE_TBL_COU_STU);
-//
-//                for (String query: CREATE_DATA) {
-//                    db.execSQL(query);
-//                }
+                db.execSQL(CREATE_TBL_COURSES);
+                db.execSQL(CREATE_TBL_STUDENTS);
+                db.execSQL(CREATE_TBL_COU_STU);
+
+                for (String query: CREATE_DATA) {
+                    db.execSQL(query);
+                }
 
             }
         } catch (SQLException e) {
