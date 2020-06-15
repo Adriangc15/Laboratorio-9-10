@@ -174,7 +174,7 @@ public class ServiceStudent extends Service {
         }
     }
 
-    public void insertEnroll(int [] courses, int studentId) throws NoDataException, GlobalException {
+    public void insertEnroll(ArrayList<Integer> courses, int studentId) throws NoDataException, GlobalException {
         try {
             this.connect();
         } catch (SQLException e) {

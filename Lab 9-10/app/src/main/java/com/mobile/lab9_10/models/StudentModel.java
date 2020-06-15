@@ -5,6 +5,7 @@ import com.mobile.lab9_10.dataAccess.NoDataException;
 import com.mobile.lab9_10.dataAccess.ServiceStudent;
 import com.mobile.lab9_10.entities.Student;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class StudentModel {
@@ -42,7 +43,7 @@ public class StudentModel {
     public void updateStudent(Student student) throws NoDataException, GlobalException {
         this.serviceStudent.updateStudent(student);
     }
-    public void insertEnroll(int [] courses, int studentId) throws NoDataException, GlobalException {
+    public void insertEnroll(ArrayList<Integer> courses, int studentId) throws NoDataException, GlobalException {
         this.serviceStudent.insertEnroll(courses,studentId);
     }
 
