@@ -43,4 +43,9 @@ public class Course implements Serializable {
     public void setCredits(String credits) {
         this.credits = credits;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Curso: %s Creditos: %s", getDescription(), getCredits());
+    }
 }

@@ -43,6 +43,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
     private CourseModel courseModel;
     private CoordinatorLayout coordinatorLayout;
     private View root;
+    private String contextPath;
     public static final String EDITABLE_FLAG = "editable";
     public static final String COURSE_FLAG = "course";
 
@@ -53,24 +54,16 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
         root = inflater.inflate(R.layout.fragment_course, container, false);
 
         // Get Course model instance
-        this.courseModel = CourseModel.getInstance(root.getContext().getFilesDir().getPath());
+        this.contextPath = root.getContext().getFilesDir().getPath();
+        this.courseModel = CourseModel.getInstance(this.contextPath);
 
         // use a linear layout manager
         this.layoutManager = new LinearLayoutManager(root.getContext());
-//        this.courseList = (List<Course>) this.getCourses();
-//        this.adapter = new CourseAdapter(this.courseList, this);
-        this.coordinatorLayout = (CoordinatorLayout) root.findViewById(R.id.coordinator_layoutCa);
+        this.coordinatorLayout = (CoordinatorLayout) root.findViewById(R.id.coordinator_layout_course);
 
         // This because the content of the recycler will not change between the items
         this.recyclerView = (RecyclerView) root.findViewById(R.id.recycler_course);
-//        this.recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-//        this.recyclerView.setHasFixedSize(true);
-//        this.recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        this.recyclerView.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
-//        this.recyclerView.setAdapter(adapter);
 
-//        ItemTouchHelper.SimpleCallback itemSimpleCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
-//        new ItemTouchHelper(itemSimpleCallback).attachToRecyclerView(this.recyclerView);
 
         // Create action add course to floating button
         FloatingActionButton fab = this.root.findViewById(R.id.addCourseBtn);
@@ -89,7 +82,7 @@ public class CourseFragment extends Fragment implements CourseAdapter.CourseAdap
     public void onResume() {
         super.onResume();
         this.courseList = (List<Course>) this.getCourses();
-        this.adapter = new CourseAdapter(this.courseList, this);
+        this.adapter = new CourseAdapter(this.courseList, this, this.contextPath);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         this.recyclerView.setHasFixedSize(true);
         this.recyclerView.setItemAnimator(new DefaultItemAnimator());

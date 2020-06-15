@@ -90,7 +90,8 @@ public class ServiceCourse extends Service {
             throw new NoDataException("La base de datos no está disponible.");
         }
 
-        String[] arg = {String.valueOf(courseID)};
+        String[] arg = {String.valueOf(courseID),
+                        String.valueOf(courseID)};
 
         try {
             this.connection.beginTransaction();

@@ -14,7 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.lab9_10.R;
+import com.mobile.lab9_10.dataAccess.GlobalException;
+import com.mobile.lab9_10.dataAccess.NoDataException;
 import com.mobile.lab9_10.entities.Course;
+import com.mobile.lab9_10.models.CourseModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,12 +30,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     private List<Course> courseListFiltered;
     private CourseAdapterListener listener;
     private Course deletedCourse;
+    private CourseModel courseModel;
 
-    public CourseAdapter(List<Course> courseList, CourseAdapterListener listener){
+    public CourseAdapter(List<Course> courseList, CourseAdapterListener listener, String contextPath){
         this.courseList = courseList;
         this.courseListFiltered = courseList;
         this.deletedCourse = null;
         this.listener = listener;
+        this.courseModel = CourseModel.getInstance(contextPath);
     }
 
     @NonNull
@@ -68,15 +73,22 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     }
 
     public void restoreItem(int position){
-        if (courseListFiltered.size() == courseList.size()){
-            courseListFiltered.add(position, deletedCourse);
-        } else {
-            courseListFiltered.add(position, deletedCourse);
-            courseList.add(deletedCourse);
-        }
+        try {
+            this.courseModel.insertCourse(deletedCourse);
+            if (courseListFiltered.size() == courseList.size()){
+                courseListFiltered.add(position, deletedCourse);
+            } else {
+                courseListFiltered.add(position, deletedCourse);
+                courseList.add(deletedCourse);
+            }
 
-        notifyDataSetChanged();
-        notifyItemInserted(position);
+            notifyDataSetChanged();
+            notifyItemInserted(position);
+        } catch (NoDataException e) {
+            e.printStackTrace();
+        } catch (GlobalException e) {
+            e.printStackTrace();
+        }
     }
 
     public Course getSwipedItem(int position){

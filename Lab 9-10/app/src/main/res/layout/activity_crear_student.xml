@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.CrearStudent">
+    tools:context=".ui.student.StudentCreate">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,11 +19,11 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/TitleCourse"
+                android:id="@+id/TitleStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
-                android:text="Crear Curso"
+                android:text="Crear Estudiante"
                 app:fontFamily="sans-serif" />
         </TableRow>
 
@@ -53,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputCourseId"
+                    android:id="@+id/inputStudentId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -89,7 +89,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputNombre"
+                    android:id="@+id/inputStudentName"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -125,7 +125,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputApellido"
+                    android:id="@+id/inputStudentLastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -160,7 +160,7 @@
                 android:layout_weight="93">
 
                 <EditText
-                    android:id="@+id/inputEdad"
+                    android:id="@+id/inputStudentAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -170,17 +170,68 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/coursesRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cursos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="93"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/studentCoursesSprinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/saveCourse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:src="@android:drawable/ic_menu_save" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/matricularBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:text="Matricular"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/saveStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical|end"
+                    android:src="@android:drawable/ic_menu_save" />
+
+            </LinearLayout>
+
         </TableRow>
 
     </TableLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,13 +7,16 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.lab9_10.R;
-import com.mobile.lab9_10.entities.Course;
+import com.mobile.lab9_10.dataAccess.GlobalException;
+import com.mobile.lab9_10.dataAccess.NoDataException;
 import com.mobile.lab9_10.entities.Student;
+import com.mobile.lab9_10.models.StudentModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,12 +29,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     private List<Student> studentListFiltered;
     private Student deletedStudent;
     private StudentAdapterListener listener;
+    private StudentModel studentModel;
 
-    public StudentAdapter(List<Student> studentList, StudentAdapterListener listener){
+    public StudentAdapter(List<Student> studentList, StudentAdapterListener listener, String contextPath){
         this.studentList = studentList;
         this.studentListFiltered = studentList;
         this.deletedStudent = null;
         this.listener = listener;
+        this.studentModel = StudentModel.getInstance(contextPath);
     }
 
     @NonNull
@@ -67,15 +72,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     }
 
     public void restoreItem(int position){
-        if (studentListFiltered.size() == studentList.size()){
-            studentListFiltered.add(position, deletedStudent);
-        } else {
-            studentListFiltered.add(position, deletedStudent);
-            studentList.add(deletedStudent);
-        }
 
-        notifyDataSetChanged();
-        notifyItemInserted(position);
+        try {
+            this.studentModel.insertStudent(deletedStudent);
+            if (studentListFiltered.size() == studentList.size()){
+                studentListFiltered.add(position, deletedStudent);
+            } else {
+                studentListFiltered.add(position, deletedStudent);
+                studentList.add(deletedStudent);
+                notifyDataSetChanged();
+                notifyItemInserted(position);
+            }
+        } catch (NoDataException e) {
+            e.printStackTrace();
+        } catch (GlobalException e) {
+            e.printStackTrace();
+        }
     }
 
     public Student getSwipedItem(int position){

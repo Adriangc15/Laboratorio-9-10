@@ -59,9 +59,10 @@ public class DataBase {
             "credits " +
             "From Courses";
 
-    public static final String DELETE_COURSE = "Delete From " +
-            "Courses " +
-            "Where id = ?";
+    public static final String DELETE_COURSE = "Delete From StudentCourses " +
+                                                "Where courseId = ?; " +
+                                                "Delete From Courses " +
+                                                "Where id = ?;";
 
     public static final String INSERT_COURSE = "Insert into Courses(id, description, credits) values (?, ?, ?)";
 
@@ -85,9 +86,11 @@ public class DataBase {
             "age " +
             "From Students";
 
-    public static final String DELETE_STUDENT = "Delete From " +
-            "Students " +
-            "Where id = ?";
+    public static final String DELETE_STUDENT = "Delete From StudentCourses " +
+                                                "Where studentId = ?; " +
+                                                "Delete From " +
+                                                "Students " +
+                                                "Where id = ?;";
 
     public static final String INSERT_STUDENT = "Insert into Students(id, name, lastName, age) values (?, ?, ?, ?);";
 

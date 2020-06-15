@@ -91,7 +91,8 @@ public class ServiceStudent extends Service {
             throw new NoDataException("La base de datos no está disponible.");
         }
 
-        String[] arg = {String.valueOf(studentID)};
+        String[] arg = {String.valueOf(studentID),
+                        String.valueOf(studentID)};
 
         try {
             this.connection.beginTransaction();
