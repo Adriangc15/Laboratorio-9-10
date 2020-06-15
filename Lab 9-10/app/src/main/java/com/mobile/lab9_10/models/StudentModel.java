@@ -42,5 +42,8 @@ public class StudentModel {
     public void updateStudent(Student student) throws NoDataException, GlobalException {
         this.serviceStudent.updateStudent(student);
     }
+    public void insertEnroll(int [] courses, int studentId) throws NoDataException, GlobalException {
+        this.serviceStudent.insertEnroll(courses,studentId);
+    }
 
 }

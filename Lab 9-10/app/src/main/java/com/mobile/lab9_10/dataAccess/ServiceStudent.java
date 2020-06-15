@@ -174,4 +174,34 @@ public class ServiceStudent extends Service {
         }
     }
 
+    public void insertEnroll(int [] courses, int studentId) throws NoDataException, GlobalException {
+        try {
+            this.connect();
+        } catch (SQLException e) {
+            throw new NoDataException("La base de datos no está disponible.");
+        }
+
+        String [] arg;
+
+        try {
+            this.connection.beginTransaction();
+            for (int course : courses){
+                arg = new String[]{String.valueOf(studentId), String.valueOf(course)};
+                this.connection.execSQL(DataBase.INSERT_ENROLL , arg);
+            }
+            this.connection.setTransactionSuccessful();
+        }catch (SQLException e){
+            throw new GlobalException("Sentencia no  válida.");
+        } finally {
+            try {
+                if (this.connection != null && this.connection.isOpen()){
+                    this.connection.endTransaction();
+                    this.disconnect();
+                }
+            } catch (SQLException e){
+                throw new GlobalException("Estatutos nulos o inválidos");
+            }
+        }
+    }
+
 }
