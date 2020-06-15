@@ -13,7 +13,7 @@ public class Service {
     };
 
     protected void connect() throws SQLException {
-        this.connection = SQLiteDatabase.openDatabase(String.format(DB_PATH, this.contextPath), null, SQLiteDatabase.OPEN_READWRITE);
+        this.connection = SQLiteDatabase.openDatabase(String.format(DB_PATH, this.contextPath), null, SQLiteDatabase.CREATE_IF_NECESSARY);
     }
 
     protected void disconnect() throws SQLException{

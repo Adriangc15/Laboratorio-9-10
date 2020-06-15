@@ -93,12 +93,15 @@ public class ServiceCourse extends Service {
         String[] arg = {String.valueOf(courseID)};
 
         try {
-            this.connection.rawQuery(DataBase.DELETE_COURSE , arg);
+            this.connection.beginTransaction();
+            this.connection.execSQL(DataBase.DELETE_COURSE , arg);
+            this.connection.setTransactionSuccessful();
         }catch (SQLException e){
             throw new GlobalException("Sentencia no  válida.");
         } finally {
             try {
                 if (this.connection != null && this.connection.isOpen()){
+                    this.connection.endTransaction();
                     this.disconnect();
                 }
             } catch (SQLException e){
@@ -120,12 +123,15 @@ public class ServiceCourse extends Service {
                 course.getCredits()};
 
         try {
-            this.connection.rawQuery(DataBase.INSERT_COURSE , arg);
+            this.connection.beginTransaction();
+            this.connection.execSQL(DataBase.INSERT_COURSE , arg);
+            this.connection.setTransactionSuccessful();
         }catch (SQLException e){
             throw new GlobalException("Sentencia no  válida.");
         } finally {
             try {
                 if (this.connection != null && this.connection.isOpen()){
+                    this.connection.endTransaction();
                     this.disconnect();
                 }
             } catch (SQLException e){
@@ -147,12 +153,15 @@ public class ServiceCourse extends Service {
                 String.valueOf(course.getId())};
 
         try {
-            this.connection.rawQuery(DataBase.UPDATE_COURSE , arg);
+            this.connection.beginTransaction();
+            this.connection.execSQL(DataBase.UPDATE_COURSE , arg);
+            this.connection.setTransactionSuccessful();
         }catch (SQLException e){
             throw new GlobalException("Sentencia no  válida.");
         } finally {
             try {
                 if (this.connection != null && this.connection.isOpen()){
+                    this.connection.endTransaction();
                     this.disconnect();
                 }
             } catch (SQLException e){

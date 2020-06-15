@@ -65,7 +65,7 @@ public class DataBase {
 
     public static final String INSERT_COURSE = "Insert into Courses(id, description, credits) values (?, ?, ?)";
 
-    public static final String UPDATE_COURSE = "Update Courses Set description = ? credits = ? Where id = ?";
+    public static final String UPDATE_COURSE = "Update Courses Set description=?, credits=? Where id=?";
 
     // End of Queries for Courses ------------------------------------------------------------------
 
@@ -89,9 +89,9 @@ public class DataBase {
             "Students " +
             "Where id = ?";
 
-    public static final String INSERT_STUDENT = "Insert into Students(id, name, lastName, age) values (?, ?, ?, ?)";
+    public static final String INSERT_STUDENT = "Insert into Students(id, name, lastName, age) values (?, ?, ?, ?);";
 
-    public static final String UPDATE_STUDENT = "Update Students Set name = ? lastName = ? age = ? Where id = ?";
+    public static final String UPDATE_STUDENT = "Update Students Set name=?, lastName=?, age=? Where id = ?";
     // End of Queries for Students -----------------------------------------------------------------
 
     private static final String DB_PATH = "%s/lab9-10";
